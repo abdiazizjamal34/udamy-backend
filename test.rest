@@ -1,0 +1,78 @@
+//
+GET http://localhost:7000/auth/test
+###
+POST http://localhost:7000/api/auth/signup
+Content-Type: application/json
+
+{
+  "firstName": "test2",
+  "lastName": "ahmed",
+  "age": 24,
+  "email": "test5.doe@example.com",
+  "phoneNumber": "1234567890",
+  "username": "test2",
+  "password": "password123"
+}
+
+### 
+// for singup
+POST  http://localhost:7000/api/auth/signin
+Content-Type: application/json
+
+
+{
+  "email": "test.doe@example.com",
+  "password": "password123"
+}
+
+###
+curl -X POST http://localhost:7000/api/auth/signin \
+-H "Content-Type: application/json" \
+-d '{
+  "email": "test.doe@example.com",
+  "password": "password123"
+}'
+###
+curl -X GET http://localhost:7000/api/auth/users \
+-H "x-auth-token:"
+
+{
+  "x-auth-token": ""
+
+}
+
+###  create post
+curl -X POST -H "Content-Type: application/json" -d '{"title":"Post Title", "content":"Post content" , "category":"post python", "price": 233}' http://localhost:7000/api/posts
+### get all post
+curl    http://localhost:7000/api/posts
+### get by catagorise
+curl http://localhost:7000/api/posts/category/sss
+### get  post by id
+curl http://localhost:6000/api/posts/664f2bedd9b4a5adcd1aeb78
+### update post by id
+curl -X PUT -H "Content-Type: application/json" -d '{"title":"Updated Title", "content":"Updated content" }' http://localhost:6000/api/posts/66559a9b10324e282a898483
+### delete post by id
+curl -X DELETE http://localhost:6000/api/posts/664f2bedd9b4a5adcd1aeb78
+###
+POST  http://localhost:6000/api/posts
+Content-Type: application/multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+### Create pyment
+POST http://localhost:7000/api/payments
+Content-Type: application/json
+
+{
+ "courseID": "664f2bedd9b4a5adcd1aeb78",
+  "userId": "5f9b1b1",
+ "title" : "Payment Title",
+ "category": "Payment Category",
+  "price": 100
+}
+
+###
+curl -X POST -H "Content-Type: application/json" -d '{  "courseID":"2332", "userId":"2332dd", "title":"Post Title",  "category":"post python", "price": 233}' http://localhost:7000/api/payments
+
+### get all payment   
+GET  http://localhost:7000/api/payments
+### 
+curl http://localhost:7000/api/posts/category/sss
